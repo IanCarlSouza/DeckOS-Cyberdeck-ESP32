@@ -19,7 +19,6 @@ private:
 
     // --- GERENCIAMENTO DINÂMICO DE SLOTS NA FLASH ---
 
-    // Obtém a lista de IDs salvos (ex: "1,2,5,12")
     String obterListaIDs() {
         prefs.begin("mural_db", true);
         String lista = prefs.getString("ids", "");
@@ -53,7 +52,6 @@ private:
         if (n == 1024) {
             String lista = obterListaIDs();
             String idStr = String(id);
-            // Adiciona na lista de IDs se ainda não estiver presente
             if (lista.length() == 0) {
                 salvarListaIDs(idStr);
             } else if (("," + lista + ",").indexOf("," + idStr + ",") == -1) {
@@ -71,7 +69,6 @@ private:
         prefs.remove(chave.c_str());
         prefs.end();
 
-        // Atualiza a lista de IDs
         String lista = obterListaIDs();
         String idStr = String(id);
         String novaLista = "";
@@ -97,7 +94,7 @@ private:
         salvarListaIDs(novaLista);
     }
 
-    // --- HTML / CSS / JS CORRIGIDOS ---
+    // HTML / CSS / JS Gerados por IA
     const char* htmlPagina = R"rawliteral(
 <!DOCTYPE html>
 <html>
@@ -380,13 +377,11 @@ public:
 
         WiFi.mode(WIFI_AP);
         WiFi.softAP("DeckOS-WiFi", "");
-
-        // Rota principal
         server.on("/", [this]() {
             server.send(200, "text/html", htmlPagina);
         });
 
-        // Rota de recepção do desenho em tempo real
+        // Guarda o desenho em tempo real
         server.on("/frame", HTTP_POST, [this]() {
             if (server.hasArg("plain") && displayPtr != nullptr) {
                 String hex = server.arg("plain");
@@ -406,7 +401,7 @@ public:
             server.send(200, "text/plain", "OK");
         });
 
-        // Rota para retornar o JSON de todos os desenhos salvos
+        // Eetorna o JSON de todos os desenhos salvos
         server.on("/gallery", HTTP_GET, [this]() {
             String lista = obterListaIDs();
             prefs.begin("mural_db", true);

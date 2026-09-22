@@ -43,11 +43,9 @@ public:
         return true;
     }
 
-    // --- TELA DE ABERTURA (SPLASH SCREEN) ---
+    // --- TELA DE ABERTURA ---
     void desenharTelaAbertura() {
         display.clearDisplay();
-        
-        // Moldura externa decorativa
         display.drawRect(2, 2, LARGURA_TELA - 4, ALTURA_TELA - 4, SSD1306_WHITE);
         
         // Título e Subtítulo
@@ -71,7 +69,7 @@ public:
         display.print("=== DeckOS MENU ===");
         display.drawLine(0, 10, LARGURA_TELA, 10, SSD1306_WHITE);
 
-        // Exibe 3 itens visíveis com rolagem
+        // Tela de rolagem
         int itemInicio = max(0, itemMenuSelecionado - 1);
         int yOffset = 16;
 
