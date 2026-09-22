@@ -17,8 +17,6 @@ private:
     bool interfaceDesenhada = false;
     Adafruit_SSD1306* displayPtr = nullptr;
 
-    // --- GERENCIAMENTO DINÂMICO DE SLOTS NA FLASH ---
-
     String obterListaIDs() {
         prefs.begin("mural_db", true);
         String lista = prefs.getString("ids", "");
