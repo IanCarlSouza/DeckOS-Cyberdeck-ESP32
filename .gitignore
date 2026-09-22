@@ -1,0 +1,6 @@
+# Ignorar pastas de compilação do Arduino
+build/
+bin/
+
+# Arquivos locais de configuração do IDE
+.local.properties
